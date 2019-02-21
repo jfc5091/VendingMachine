@@ -1,13 +1,22 @@
-public interface VMState {
+import java.util.List;
 
-    void changeState();
+abstract class VMState {
 
-    double calculateMoneyInserted();
+    private List<VendingMachine.Coin> coins;
 
-    void refund();
+    void refund(){}
 
-    void dispenseProduct();
+    void dispenseProduct(){}
 
-    void insertCoin();
+    public void insertCoin(VendingMachine.Coin coin){}
+
+    public double calculateMoneyInserted() {
+        double amount = 0.0;
+
+        for(VendingMachine.Coin coin : this.coins) {
+            amount += coin.amount();
+        }
+        return amount;
+    }
 
 }

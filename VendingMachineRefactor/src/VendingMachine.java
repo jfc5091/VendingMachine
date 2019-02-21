@@ -30,6 +30,8 @@ public class VendingMachine {
 
     private final long refundDelay;
 
+    private Waiting waiting;
+
     public VendingMachine() {
         this(500);
     }
@@ -40,6 +42,8 @@ public class VendingMachine {
         dispensable = false;
 
         this.refundDelay = refundDelay;
+
+        waiting = new Waiting(this.refundDelay,coins);
     }
 
     public synchronized void insertCoin(Coin coin) {
